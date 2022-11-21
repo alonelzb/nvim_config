@@ -1,50 +1,59 @@
 local status_ok, treesitter = pcall(require, "nvim-treesitter")
 if not status_ok then
-    return
+	return
 end
 
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok then
-    return
+local _status_ok, configs = pcall(require, "nvim-treesitter.configs")
+if not _status_ok then
+	return
 end
 
 configs.setup({
-    ensure_installed = {
-        "lua", "markdown", "markdown_inline", "bash", "python",
-        "html", "css", "javascript", "typescript", "vue"
-    }, -- put the language you want in this array
-    -- ensure_installed = "all", -- one of "all" or a list of languages
-    ignore_install = { "" }, -- List of parsers to ignore installing
-    sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+	ensure_installed = {
+		"lua",
+		"markdown",
+		"markdown_inline",
+		"bash",
+		"python",
+		"html",
+		"css",
+		"javascript",
+		"typescript",
+		"vue",
+		"regex",
+		"vim",
+	}, -- put the language you want in this array
+	-- ensure_installed = "all", -- one of "all" or a list of languages
+	ignore_install = { "" }, -- List of parsers to ignore installing
+	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 
-    highlight = {
-        enable = true, -- false will disable the whole extension
-        disable = {}, -- list of language that will be disabled
-    },
-    autopairs = {
-        enable = true,
-    },
-    indent = { enable = true, disable = { "python" } },
+	highlight = {
+		enable = true, -- false will disable the whole extension
+		disable = {}, -- list of language that will be disabled
+	},
+	autopairs = {
+		enable = true,
+	},
+	indent = { enable = true, disable = { "python" } },
 
-    context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-    },
-    -- 彩虹括号
-    rainbow = {
-        enable = true,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        colors = {
-            "#ff79c6",
-            "#ee6985",
-            "#D6A760",
-            "#7794f4",
-            "#b38bf5",
-            "#7cc7fe",
-        }, -- table of hex strings
-        termcolors = { } -- table of colour name strings
-    },
-
+	context_commentstring = {
+		enable = true,
+		enable_autocmd = false,
+	},
+	-- 彩虹括号
+	rainbow = {
+		enable = true,
+		-- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+		max_file_lines = nil, -- Do not enable for files with more than n lines, int
+		colors = {
+			"#ff79c6",
+			"#ee6985",
+			"#D6A760",
+			"#7794f4",
+			"#b38bf5",
+			"#7cc7fe",
+		}, -- table of hex strings
+		termcolors = {}, -- table of colour name strings
+	},
 })

@@ -126,6 +126,7 @@ return packer.startup(function(use)
 	})
 
 	-- Colorschemes
+	use({ "glepnir/zephyr-nvim" })
 	use({ "folke/tokyonight.nvim" })
 	use({ "olimorris/onedarkpro.nvim" })
 	use({ "tanvirtin/monokai.nvim" })
@@ -251,6 +252,14 @@ return packer.startup(function(use)
 			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
 		end,
 	})
+	-- use({
+	-- 	"ggandor/leap.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("leap").add_default_mappings()
+	-- 		-- you can configure Hop the way you like here; see :h hop-config
+	-- 	end,
+	-- })
 
 	-- UI 增强
 	use({
@@ -265,6 +274,19 @@ return packer.startup(function(use)
 			require("lspsaga").init_lsp_saga({})
 		end,
 	})
+
+	-- use({
+	-- 	"folke/noice.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("plugins.noice")
+	-- 	end,
+	-- 	requires = {
+	-- 		-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+	-- 		{ "MunifTanjim/nui.nvim", event = "BufRead" },
+	-- 	},
+	-- })
+
 	use({
 		"rcarriga/nvim-notify",
 		event = "BufRead",
@@ -272,7 +294,6 @@ return packer.startup(function(use)
 			require("plugins.nvim-notify")
 		end,
 	})
-
 	-- other
 	use({
 		"dstein64/vim-startuptime",
@@ -284,6 +305,26 @@ return packer.startup(function(use)
 		event = "BufRead",
 		config = function()
 			require("colorizer").setup()
+		end,
+	})
+	-- 函数签名
+	use({
+		"ray-x/lsp_signature.nvim",
+		-- event = "InsertEnter",
+		opt = true,
+		config = function()
+			require("plugins.lsp_signature")
+		end,
+	})
+
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "BufRead",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
 		end,
 	})
 

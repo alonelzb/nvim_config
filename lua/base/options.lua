@@ -1,5 +1,4 @@
 vim.opt.backup = false -- creates a backup file
--- vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 2 -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menu", "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
@@ -38,7 +37,7 @@ vim.opt.signcolumn = "yes" -- always show the sign column, otherwise it would sh
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 4 -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 4 -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
--- vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
+vim.opt.guifont = "Hack Nerd Font:h12" -- the font used in graphical neovim applications
 vim.opt.fillchars.eob = " " -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.shortmess:append("c") -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l") -- keys allowed to move to the previous/next line when the beginning/end of line is reached

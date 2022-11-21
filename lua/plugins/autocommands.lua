@@ -1,12 +1,11 @@
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
 	callback = function()
-		vim.cmd([[
-      nnoremap <silent> <buffer> q :close<CR> 
-      set nobuflisted 
-    ]])
+		vim.keymap.set("n", "q", ":q<CR>")
 	end,
 })
+-- nnoremap <silent> <buffer> q :close<CR>
+-- set nobuflisted
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "gitcommit" },
@@ -24,10 +23,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
 vim.cmd([[
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 ]])
+vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
 -- vim.api.nvim_create_autocmd({ "BufEnter" }, {
 --   callback = function()
 --     vim.cmd [[
@@ -57,6 +56,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 	callback = function()
 		vim.highlight.on_yank({ higroup = "Visual", timeout = 500 })
+		vim.o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 	end,
 })
 
@@ -64,9 +64,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "javascript", "typescript", "vue" },
 	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
+		vim.bo.tabstop = 2
+		vim.bo.shiftwidth = 2
+		vim.bo.softtabstop = 2
 	end,
 })
 

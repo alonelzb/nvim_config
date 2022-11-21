@@ -51,6 +51,12 @@ null_ls.setup({
 			-- env = { PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/utils/linter-config/.prettierrc.json"), },
 		}),
 		formatting.stylua,
+		-- formatting.yapf.with({
+		-- 	extra_args = {
+		-- 		"--style {based_on_style: pep8, indent_width: 2}",
+		-- 	},
+		-- }),
+		formatting.black,
 		-- diagnostics.eslint_d,
 		-- formatting.google_java_format,
 		-- diagnostics.flake8,

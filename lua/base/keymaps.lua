@@ -86,9 +86,10 @@ keymap("n", "<Leader>bf", ":bf<CR>", opts)
 keymap("n", "<Leader>bl", ":bl<CR>", opts)
 
 keymap("n", "<C-s>", "<cmd>w<CR>", opts)
+keymap("i", "<C-s>", "<cmd>w<CR>", opts)
 keymap("n", "<Leader>q", "<cmd>q<CR>", opts)
 keymap("n", "<leader>fm", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-keymap("i", "<C-s>", "<cmd>w<CR>", opts)
+keymap("n", "<C-q>", "<cmd>wq<CR>", opts)
 -- like emacs
 keymap("i", "<C-b>", "<Left>", opts)
 keymap("i", "<C-f>", "<Right>", opts)
@@ -103,6 +104,9 @@ keymap("c", "<C-b>", "<Left>", opts)
 keymap("n", "f", ":HopChar1<CR>")
 keymap("n", "t", ":HopChar2<CR>")
 keymap("n", "F", ":HopChar1CurrentLine<CR>")
+
+-- Telescope
+keymap("n", "<Leader>b", ":Telescope buffers<CR>")
 
 vim.cmd([[
     snoremap <silent> <C-j> <cmd>lua require('luasnip').jump(1)<Cr>
