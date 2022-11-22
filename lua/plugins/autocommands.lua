@@ -4,8 +4,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.keymap.set("n", "q", ":q<CR>")
 	end,
 })
--- nnoremap <silent> <buffer> q :close<CR>
--- set nobuflisted
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "gitcommit" },
@@ -23,17 +21,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.cmd([[
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-]])
+vim.cmd([[ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]])
 vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
--- vim.api.nvim_create_autocmd({ "BufEnter" }, {
---   callback = function()
---     vim.cmd [[
---       if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
---     ]]
---   end,
--- })
 
 vim.api.nvim_create_autocmd({ "VimResized" }, {
 	callback = function()
@@ -69,10 +58,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		vim.bo.softtabstop = 2
 	end,
 })
-
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
---     pattern = { "*.js", "*.ts", "*.vue" },
---     callback = function()
---         vim.lsp.buf.format({async = true})
---     end,
--- })

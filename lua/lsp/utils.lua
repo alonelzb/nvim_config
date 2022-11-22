@@ -2,13 +2,15 @@ local M = {}
 
 M.servers = {
 	"sumneko_lua",
-	"cssls",
-	"html",
+	-- "html",
+	-- "cssls",
 	"volar",
-	"pyright",
 	"bashls",
+	"pyright",
 	"jsonls",
 	"yamlls",
+    -- 'gopls',
+    -- 'tsserver'
 }
 
 function M.ui()
@@ -166,6 +168,6 @@ function M.on_attach(client, bufnr)
 	-- format_onsave(client, bufnr)
 end
 
-M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- M.capabilities = require("cmp-nvim-lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 return M

@@ -36,6 +36,7 @@ configs.setup({
 	},
 	indent = { enable = true, disable = { "python" } },
 
+    -- 上下文注释
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
@@ -56,4 +57,5 @@ configs.setup({
 		}, -- table of hex strings
 		termcolors = {}, -- table of colour name strings
 	},
+
 })

@@ -1,17 +1,15 @@
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
-end
+local lspconfig = require("lspconfig")
 
 local opts = {}
-local servers = require("lsp.utils").servers
-require("lsp.utils").ui()
+local utils = require('lsp.utils')
+local servers = utils.servers
+utils.ui()
 
 -- 遍历配置 LSP 服务器
 for _, server in pairs(servers) do
 	opts = {
-		on_attach = require("lsp.utils").on_attach,
-		capabilities = require("lsp.utils").capabilities,
+		on_attach = utils.on_attach,
+		capabilities = utils.capabilities,
 	}
 
 	server = vim.split(server, "@")[1]
