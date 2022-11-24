@@ -1,12 +1,5 @@
-local status_ok, treesitter = pcall(require, "nvim-treesitter")
-if not status_ok then
-	return
-end
-
-local _status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not _status_ok then
-	return
-end
+-- require("nvim-treesitter")
+local configs = require("nvim-treesitter.configs")
 
 configs.setup({
 	ensure_installed = {
@@ -30,17 +23,19 @@ configs.setup({
 	highlight = {
 		enable = true, -- false will disable the whole extension
 		disable = {}, -- list of language that will be disabled
+		additional_vim_regex_highlighting = false,
 	},
 	autopairs = {
 		enable = true,
 	},
 	indent = { enable = true, disable = { "python" } },
 
-    -- 上下文注释
+	-- 上下文注释
 	context_commentstring = {
 		enable = true,
 		enable_autocmd = false,
 	},
+
 	-- 彩虹括号
 	rainbow = {
 		enable = true,
@@ -57,5 +52,4 @@ configs.setup({
 		}, -- table of hex strings
 		termcolors = {}, -- table of colour name strings
 	},
-
 })

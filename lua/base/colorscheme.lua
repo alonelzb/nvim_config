@@ -17,6 +17,7 @@ require("base.colors.zephyr")
 
 -- hi Normal guibg=None
 vim.cmd([[
+
   hi SignColumn guibg=None 
  
   hi NvimTreeNormal guibg=None

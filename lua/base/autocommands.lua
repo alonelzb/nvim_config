@@ -1,7 +1,7 @@
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "qf", "help", "man", "lspinfo", "spectre_panel" },
 	callback = function()
-		vim.keymap.set("n", "q", ":q<CR>")
+		vim.keymap.set("n", "q", ":q<CR>", { silent = true })
 	end,
 })
 

@@ -1,16 +1,9 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-	return
-end
+local cmp = require("cmp")
 
-
+print("load nvim-cmp")
 -- specify the full path...
 -- require("luasnip/loaders/from_vscode").lazy_load({ paths = "~/.config/nvim/snippets"})
 
--- local has_words_before = function()
---     local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
---     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
--- end
 local kind_icons = {
 	Text = "",
 	Method = "",
@@ -39,11 +32,14 @@ local kind_icons = {
 	TypeParameter = "",
 }
 
-local luasnip = require('luasnip')
 cmp.setup({
+	view = {
+		-- entries = "custom" -- can be "custom", "wildmenu" or "native"
+		entries = { name = "custom", selection_order = "near_cursor" },
+	},
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 
@@ -65,22 +61,23 @@ cmp.setup({
 		-- super Tab
 
 		["<C-j>"] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
+			if require("luasnip").expand_or_jumpable() then
+				require("luasnip").expand_or_jump()
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
 
 		["<C-k>"] = cmp.mapping(function(fallback)
-			if luasnip.jumpable(-1) then
-				luasnip.jump(-1)
+			if require("luasnip").jumpable(-1) then
+				require("luasnip").jump(-1)
 			else
 				fallback()
 			end
 		end, { "i", "s" }),
 	}),
 
+	-- 补全样式
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
@@ -100,6 +97,7 @@ cmp.setup({
 			return vim_item
 		end,
 	},
+	-- 补全源
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },

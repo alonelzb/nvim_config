@@ -1,14 +1,10 @@
 local noice = require("noice")
 --
 noice.setup({
-	-- 	-- add any options here
-	-- 	-- presets = {
-	-- 	-- 	command_palette = true, -- position the cmdline and popupmenu together
-	-- 	-- },
-	-- 	messages = {
-	-- 		-- view_history = "popup",
-	-- 		-- view = "popup",
-	-- 	},
+	messages = {
+		-- view_history = "popup",
+		-- view = "popup",
+	},
 	--
 	views = {
 		cmdline_popup = {
@@ -41,6 +37,19 @@ noice.setup({
 				winhighlight = { Normal = "Normal", FloatBorder = "NoiceCmdlinePopupBorder" },
 			},
 		},
+		hover = {
+			border = {
+				style = "rounded",
+				padding = { 0, 0 },
+			},
+			position = { row = 2, col = 2 },
+			size = {
+				width = "auto",
+				height = "auto",
+				-- max_height = 20,
+				max_width = 60,
+			},
+		},
 	},
 	--
 	-- 	commands = {
@@ -61,6 +70,20 @@ noice.setup({
 				find = "written",
 			},
 			opts = { skip = true },
+		},
+		{
+			-- always route any messages with more than 20 lines to the split view
+			filter = { event = "msg_show", min_height = 10 },
+			view = "popup",
+		},
+		{
+			-- always route any messages with more than 20 lines to the split view
+			filter = { event = "notify", min_height = 10 },
+			view = "popup",
+		},
+		{
+			view = "notify",
+			filter = { cmdline = "^:" },
 		},
 	},
 })

@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 
 local opts = {}
-local utils = require('lsp.utils')
+local utils = require("lsp.utils")
 local servers = utils.servers
 utils.ui()
 
@@ -9,7 +9,8 @@ utils.ui()
 for _, server in pairs(servers) do
 	opts = {
 		on_attach = utils.on_attach,
-		capabilities = utils.capabilities,
+		-- capabilities = utils.capabilities,
+		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	}
 
 	server = vim.split(server, "@")[1]

@@ -2,15 +2,15 @@ local M = {}
 
 M.servers = {
 	"sumneko_lua",
-	-- "html",
-	-- "cssls",
+	"html",
+	"cssls",
 	"volar",
 	"bashls",
 	"pyright",
 	"jsonls",
 	"yamlls",
-    -- 'gopls',
-    -- 'tsserver'
+	-- 'gopls',
+	-- 'tsserver'
 }
 
 function M.ui()
@@ -43,31 +43,6 @@ function M.ui()
 	})
 end
 
--- local lsp_formatting = function(bufnr)
---     vim.lsp.buf.format({
---         filter = function(client)
---             -- apply whatever logic you want (in this example, we'll only use null-ls)
---             return client.name == "null-ls"
---         end,
---         bufnr = bufnr,
---     })
--- end
--- local function format_onsave(client, bufnr)
---     -- if you want to set up formatting on save, you can use this as a callback
---     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
---     -- add to your shared on_attach callback
---     if client.supports_method("textDocument/formatting") then
---         vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---         vim.api.nvim_create_autocmd("BufWritePre", {
---             group = augroup,
---             buffer = bufnr,
---             callback = function()
---                 lsp_formatting(bufnr)
---             end,
---         })
---     end
--- end
---
 -- 高亮光标下的背景
 local function hi_undercursor(client, bufnr)
 	if client.server_capabilities.documentHighlightProvider then
@@ -165,9 +140,8 @@ function M.on_attach(client, bufnr)
 
 	lsp_keymaps(bufnr)
 	hi_undercursor(client, bufnr)
-	-- format_onsave(client, bufnr)
 end
 
+-- M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- M.capabilities = require("cmp-nvim-lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 return M
